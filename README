@@ -29,12 +29,28 @@ within the nginx worker process's address space and uses nginx's built-in
 upstream event-loop framework to talk to the Mobwrite daemon asynchronously.
 
 
-2. Installation
+2. Downloading
+
+The source code for nginx-mobwrite is available on Github at:
+http://github.com/brianpane/nginx-mobwrite
+
+The recommended way to download nginx-mobwrite is to select the
+latest release from the "all tags" menu at the top of the Github page
+and then click the "download" button.  Github will then package the
+selected version of the code into a .tar.gz file and download it to
+your browser.
+
+Alternatively, if you use Git, you can run:
+  git clone git://github.com/brianpane/nginx-mobwrite.git
+to check out the latest source code.
+
+
+3. Installation
 
 Please see the INSTALL file at the root of the nginx-mobwrite source
 directory for detailed installation and configuration instructions.
 
 
-3. Maintainer
+4. Maintainer
 
 Brian Pane  brianp@brianp.net
