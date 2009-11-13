@@ -1,0 +1,40 @@
+0. Welcome
+
+nginx-mobwrite is a plugin that enables the nginx web server to
+serve as a proxy for the Mobwrite daemon.
+
+http://nginx.net/
+http://code.google.com/p/google-mobwrite/
+
+
+1. Basic concepts
+
+The Mobwrite daemon is a Python application that listens on a dedicated
+TCP port (3017 by default) for messages in its own lightweight format.
+
+On the browser side, the Mobwrite JavaScript client sends requests to the
+server by encapsulating Mobwrite messages in the body of an HTTP POST.
+Thus a Mobwrite server requires a proxy that can receive HTTP requests
+from clients, extract the messages embedded therein, and send them to
+the Mobwrite daemon.  On the response side, similarly, the proxy receives
+a reply from the Mobwrite daemon and must wrap it in an HTTP response to
+send back to the browser.
+
+Mobwrite has PHP, Python, and JSP implementations of the glue code needed
+to make a web server act as a proxy for the Mobwrite daemon.  Although is
+possible to add support for any of those languages to nginx via a helper
+process, I wanted something operationally simpler, with no additional
+moving parts.  Thus I made nginx-mobwrite, a plugin written in C that runs
+within the nginx worker process's address space and uses nginx's built-in
+upstream event-loop framework to talk to the Mobwrite daemon asynchronously.
+
+
+2. Installation
+
+Please see the INSTALL file at the root of the nginx-mobwrite source
+directory for detailed installation and configuration instructions.
+
+
+3. Maintainer
+
+Brian Pane  brianp@brianp.net

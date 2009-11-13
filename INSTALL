@@ -1,0 +1,39 @@
+To install the nginx-mobwrite plugin, you will need to rebuild nginx
+from source.  To do this,
+
+1. Download nginx-mobwrite and unpack it into some directory
+2. Download the source code for nginx (v0.7.63 or later recommended)
+   and unpack it into some other directory.
+3. cd /path/where/you/installed/nginx
+4. ./configure --prefix=/wherever/you/want/to/install/nginx \
+   --add-module=/path/to/the/unpacked/nginx-mobwrite/source/directory
+5. make
+6. make install
+   (Or "sudo make install" if you are installing to a target
+   directory that requires root permissions.)
+
+7. Edit your newly installed nginx.conf file to tell nginx
+   what URI path(s) to proxy to the Mobwrite daemon.  For example,
+
+     # many standard nginx settings omitted for brevity ...
+     http {
+
+         server {
+             listen 80;
+             # many standard server-level settings omitted...
+
+             # Serve up static content by default
+             location / {
+                 root html;
+                 index index.html;
+             }
+
+             # Upon receiving a request for the path /mw,
+             # proxy it to the Mobwrite daemon at the
+             # specified hostname:port
+             location /mw {
+                 mobwrite_pass localhost:3017;
+             }
+         }
+     }
+
