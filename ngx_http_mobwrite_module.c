@@ -53,7 +53,7 @@ dump_buffer_chain(ngx_chain_t *chain)
     buf = chain->buf;
     fprintf(stderr, "        last: %s\n", (buf->last_buf ? "TRUE" : "FALSE"));
     fprintf(stderr, "        flush: %s\n", (buf->flush ? "TRUE" : "FALSE"));
-    fprintf(stderr, "        length: %ld\n", (buf->last - buf->pos));
+    fprintf(stderr, "        length: %ld\n", (long)(buf->last - buf->pos));
     fprintf(stderr, "        content: '");
     for (next_char = buf->pos; next_char < buf->last; next_char++) {
       fprintf(stderr, "%c", *((char*)next_char));
